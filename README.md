@@ -49,6 +49,7 @@ This project follows a **Hexagonal Architecture** (Ports & Adapters) to ensure s
    npm run dev
    ```
    Server runs on `http://localhost:3000`.
+<img width="611" height="227" alt="image" src="https://github.com/user-attachments/assets/6ea0f6f1-0858-4395-93de-d123a5f048fa" />
 
 ### Frontend Setup
 1. Navigate to `frontend`:
