@@ -37,63 +37,68 @@ const RoutesTab: React.FC = () => {
     if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
 
     return (
-        <div>
-            <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold text-gray-800">Route Data</h2>
+        <div className="space-y-6">
+            <div className="flex justify-between items-center border-b border-slate-100 pb-6">
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-800">Fleet Routes</h2>
+                    <p className="text-slate-500 text-sm mt-1">Manage vessel routes and set baseline for compliance.</p>
+                </div>
                 <button
                     onClick={fetchRoutes}
-                    className="text-sm text-blue-600 hover:text-blue-800 underline"
+                    className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors text-sm font-medium shadow-sm"
                 >
-                    Refresh
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Refresh Data
                 </button>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
                 <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="border-b border-gray-200 text-gray-500 text-sm uppercase tracking-wider">
-                            <th className="py-3 px-4">ID</th>
-                            <th className="py-3 px-4">Vessel Type</th>
-                            <th className="py-3 px-4">Fuel</th>
-                            <th className="py-3 px-4">Year</th>
-                            <th className="py-3 px-4 text-right">GHG Intensity</th>
-                            <th className="py-3 px-4 text-right">Consumption (t)</th>
-                            <th className="py-3 px-4 text-right">Distance (km)</th>
-                            <th className="py-3 px-4 text-right">Emissions (t)</th>
-                            <th className="py-3 px-4 text-center">Baseline</th>
-                            <th className="py-3 px-4">Actions</th>
+                    <thead className="bg-slate-50">
+                        <tr>
+                            {['ID', 'Vessel Type', 'Fuel', 'Year', 'GHG Intensity', 'Consumption', 'Distance', 'Emissions', 'Baseline', 'Actions'].map((header, i) => (
+                                <th key={header} className={`py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider ${i > 3 ? 'text-right' : ''} ${header === 'Baseline' || header === 'Actions' ? 'text-center' : ''}`}>
+                                    {header}
+                                </th>
+                            ))}
                         </tr>
                     </thead>
-                    <tbody className="text-sm text-gray-700">
+                    <tbody className="divide-y divide-slate-100 bg-white">
                         {routes.map((route) => (
-                            <tr key={route.routeId} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                <td className="py-3 px-4 font-medium">{route.routeId}</td>
-                                <td className="py-3 px-4">{route.vesselType}</td>
-                                <td className="py-3 px-4">
-                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${route.fuelType === 'LNG' ? 'bg-green-100 text-green-700' :
-                                        route.fuelType === 'MGO' ? 'bg-yellow-100 text-yellow-700' :
-                                            'bg-gray-100 text-gray-700'
+                            <tr key={route.routeId} className="hover:bg-slate-50/80 transition-colors group">
+                                <td className="py-4 px-6 font-medium text-slate-900">{route.routeId}</td>
+                                <td className="py-4 px-6 text-slate-600">{route.vesselType}</td>
+                                <td className="py-4 px-6">
+                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${route.fuelType === 'LNG' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' :
+                                        route.fuelType === 'MGO' ? 'bg-amber-50 text-amber-700 border-amber-100' :
+                                            'bg-slate-100 text-slate-700 border-slate-200'
                                         }`}>
                                         {route.fuelType}
                                     </span>
                                 </td>
-                                <td className="py-3 px-4">{route.year}</td>
-                                <td className="py-3 px-4 text-right">{route.ghgIntensity.toFixed(2)}</td>
-                                <td className="py-3 px-4 text-right">{route.fuelConsumption.toLocaleString()}</td>
-                                <td className="py-3 px-4 text-right">{route.distance.toLocaleString()}</td>
-                                <td className="py-3 px-4 text-right">{route.totalEmissions.toLocaleString()}</td>
-                                <td className="py-3 px-4 text-center">
+                                <td className="py-4 px-6 text-slate-600">{route.year}</td>
+                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.ghgIntensity.toFixed(2)}</td>
+                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.fuelConsumption.toLocaleString()}</td>
+                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.distance.toLocaleString()}</td>
+                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.totalEmissions.toLocaleString()}</td>
+                                <td className="py-4 px-6 text-center">
                                     {route.isBaseline ? (
-                                        <span className="text-blue-600 font-bold">✓</span>
+                                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
                                     ) : (
-                                        <span className="text-gray-300">-</span>
+                                        <span className="text-slate-300">-</span>
                                     )}
                                 </td>
-                                <td className="py-3 px-4">
+                                <td className="py-4 px-6 text-center">
                                     {!route.isBaseline && (
                                         <button
                                             onClick={() => handleSetBaseline(route.routeId)}
-                                            className="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded hover:bg-blue-100 transition-colors"
+                                            className="opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-blue-200 text-blue-600 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:border-blue-300 font-medium shadow-sm"
                                         >
                                             Set Baseline
                                         </button>
