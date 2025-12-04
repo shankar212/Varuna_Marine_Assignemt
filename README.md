@@ -127,6 +127,6 @@ This project was rapidly prototyped and continually enhanced with AI agents. Div
 
 Developed by **Rathod Shanker**  
 Email: [shankerr7780@gmail.com](mailto:shankerr7780@gmail.com)  
-[LinkedIn](https://www.linkedin.com/in/shanker-rathod/) | [Portfolio](https://www.linkedin.com/in/shanker-rathod/)  
+[LinkedIn](https://www.linkedin.com/in/shanker-rathod/) | [Portfolio](https://shanker.vercel.app/)  
 
 
