@@ -37,68 +37,75 @@ const RoutesTab: React.FC = () => {
     if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
 
     return (
-        <div className="space-y-6">
-            <div className="flex justify-between items-center border-b border-slate-100 pb-6">
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-800">Fleet Routes</h2>
-                    <p className="text-slate-500 text-sm mt-1">Manage vessel routes and set baseline for compliance.</p>
+                    <h2 className="text-2xl font-bold text-slate-900">Route Data</h2>
+                    <p className="text-slate-500 mt-1">Manage vessel routes and set baselines for compliance.</p>
                 </div>
                 <button
                     onClick={fetchRoutes}
-                    className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors text-sm font-medium shadow-sm"
+                    className="group flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-all shadow-sm"
                 >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                     Refresh Data
                 </button>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+            <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm bg-white">
                 <table className="w-full text-left border-collapse">
                     <thead className="bg-slate-50">
-                        <tr>
-                            {['ID', 'Vessel Type', 'Fuel', 'Year', 'GHG Intensity', 'Consumption', 'Distance', 'Emissions', 'Baseline', 'Actions'].map((header, i) => (
-                                <th key={header} className={`py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider ${i > 3 ? 'text-right' : ''} ${header === 'Baseline' || header === 'Actions' ? 'text-center' : ''}`}>
-                                    {header}
-                                </th>
-                            ))}
+                        <tr className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            <th className="py-4 px-6 border-b border-slate-200">ID</th>
+                            <th className="py-4 px-6 border-b border-slate-200">Vessel Type</th>
+                            <th className="py-4 px-6 border-b border-slate-200">Fuel</th>
+                            <th className="py-4 px-6 border-b border-slate-200">Year</th>
+                            <th className="py-4 px-6 border-b border-slate-200 text-right">GHG Intensity</th>
+                            <th className="py-4 px-6 border-b border-slate-200 text-right">Consumption (t)</th>
+                            <th className="py-4 px-6 border-b border-slate-200 text-right">Distance (km)</th>
+                            <th className="py-4 px-6 border-b border-slate-200 text-right">Emissions (t)</th>
+                            <th className="py-4 px-6 border-b border-slate-200 text-center">Baseline</th>
+                            <th className="py-4 px-6 border-b border-slate-200">Actions</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 bg-white">
+                    <tbody className="text-sm divide-y divide-slate-100">
                         {routes.map((route) => (
-                            <tr key={route.routeId} className="hover:bg-slate-50/80 transition-colors group">
+                            <tr key={route.routeId} className={`transition-colors hover:bg-slate-50/80 ${route.isBaseline ? 'bg-blue-50/30' : ''}`}>
                                 <td className="py-4 px-6 font-medium text-slate-900">{route.routeId}</td>
                                 <td className="py-4 px-6 text-slate-600">{route.vesselType}</td>
                                 <td className="py-4 px-6">
-                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${route.fuelType === 'LNG' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' :
-                                        route.fuelType === 'MGO' ? 'bg-amber-50 text-amber-700 border-amber-100' :
+                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${route.fuelType === 'LNG' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                                        route.fuelType === 'MGO' ? 'bg-amber-50 text-amber-700 border-amber-200' :
                                             'bg-slate-100 text-slate-700 border-slate-200'
                                         }`}>
                                         {route.fuelType}
                                     </span>
                                 </td>
                                 <td className="py-4 px-6 text-slate-600">{route.year}</td>
-                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.ghgIntensity.toFixed(2)}</td>
-                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.fuelConsumption.toLocaleString()}</td>
-                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.distance.toLocaleString()}</td>
-                                <td className="py-4 px-6 text-right font-mono text-slate-600">{route.totalEmissions.toLocaleString()}</td>
+                                <td className="py-4 px-6 text-right font-mono text-slate-700">{route.ghgIntensity.toFixed(2)}</td>
+                                <td className="py-4 px-6 text-right text-slate-600">{route.fuelConsumption.toLocaleString()}</td>
+                                <td className="py-4 px-6 text-right text-slate-600">{route.distance.toLocaleString()}</td>
+                                <td className="py-4 px-6 text-right text-slate-600">{route.totalEmissions.toLocaleString()}</td>
                                 <td className="py-4 px-6 text-center">
                                     {route.isBaseline ? (
-                                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
+                                        <div className="flex justify-center">
+                                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-600">
+                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </span>
                                         </div>
                                     ) : (
                                         <span className="text-slate-300">-</span>
                                     )}
                                 </td>
-                                <td className="py-4 px-6 text-center">
+                                <td className="py-4 px-6">
                                     {!route.isBaseline && (
                                         <button
                                             onClick={() => handleSetBaseline(route.routeId)}
-                                            className="opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-white border border-blue-200 text-blue-600 px-3 py-1.5 rounded-md hover:bg-blue-50 hover:border-blue-300 font-medium shadow-sm"
+                                            className="text-xs font-medium text-blue-600 hover:text-blue-800 hover:underline decoration-2 underline-offset-2 transition-all"
                                         >
                                             Set Baseline
                                         </button>
