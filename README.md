@@ -88,6 +88,7 @@ npm run prisma:seed
 npm run dev
 ```
 The backend server will start on `http://localhost:3000`.
+<img width="611" height="227" alt="Screenshot 2025-12-04 144504" src="https://github.com/user-attachments/assets/fa06dd5c-ccef-4d34-8f70-38c678b2a9bb" />
 
 ### 3. Frontend Setup
 Open a new terminal, navigate to the frontend directory, and install dependencies:
