@@ -80,3 +80,7 @@ This project follows a **Hexagonal Architecture** (Ports & Adapters) to ensure s
 ## AI Agent Usage
 
 See `AGENT_WORKFLOW.md` for details on how AI agents were used in this project.
+
+## Credits
+
+Done by Rathod Shanker , email:shankerr7780@gmail.com
