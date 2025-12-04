@@ -12,7 +12,7 @@ const Layout: React.FC = () => {
             <header className="bg-blue-900 text-white p-6 shadow-lg">
                 <div className="container mx-auto flex justify-between items-center">
                     <h1 className="text-2xl font-bold tracking-tight">FuelEU Maritime Compliance</h1>
-                    <div className="text-sm opacity-80">Assignment Demo</div>
+                    <div className="text-sm opacity-80">Assignment - by Rathod Shanker</div>
                 </div>
             </header>
 
