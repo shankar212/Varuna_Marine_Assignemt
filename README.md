@@ -1,4 +1,4 @@
-# FuelEU Maritime Compliance Platform 🚢🌍
+# ⚓FuelEU Maritime Compliance Platform 🚢🌍
 
 A modern, full-stack platform empowering shipping companies to **seamlessly manage FuelEU Maritime compliance**. This solution enables efficient route management, automated emissions and GHG intensity calculations, real-time compliance monitoring, and optimization of both vessel- and fleet-level strategies—all in an intuitive, responsive interface.
 
