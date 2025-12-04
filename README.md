@@ -69,16 +69,19 @@ This project follows a **Hexagonal Architecture** (Ports & Adapters) to ensure s
 ## Features
 
 1. **Routes Tab**: View route data, set baseline route.
-  <img width="1851" height="792" alt="image" src="https://github.com/user-attachments/assets/383968fc-7b7d-4558-9400-25d31823c0ac" />
+  <img width="1405" height="817" alt="image" src="https://github.com/user-attachments/assets/ad8b39f5-2cb3-45ee-a863-7460f05fb4ec" />
+
 
 2. **Compare Tab**: Compare routes against the selected baseline (GHG intensity).
-   <img width="1871" height="807" alt="image" src="https://github.com/user-attachments/assets/8a875b75-6ac2-4d07-bdeb-b1ee66bcc61c" />
+   <img width="1249" height="895" alt="image" src="https://github.com/user-attachments/assets/3834c1a0-bb61-43cc-afc4-d69c2ef7d4dc" />
+
 
 3. **Banking Tab**: View Compliance Balance, bank surplus.
- <img width="1859" height="784" alt="image" src="https://github.com/user-attachments/assets/443e164f-858e-4a95-82e7-54d65735cceb" />
+ <img width="1237" height="911" alt="image" src="https://github.com/user-attachments/assets/20ef1cc6-acb0-4721-a6f3-b4fed4389ea7" />
+
   
 4. **Pooling Tab**: Create pools, view reallocation of compliance balances.
-<img width="1879" height="778" alt="image" src="https://github.com/user-attachments/assets/ddebe187-3dc3-4367-98b1-0e6bd2e5f93e" />
+<img width="1249" height="801" alt="image" src="https://github.com/user-attachments/assets/53e1a129-98f8-4e8a-a7ef-a8bf79884663" />
 
 
 ## Testing
